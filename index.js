@@ -4,7 +4,7 @@ const renderSection = (emails, element) => {
       let iconClass = 'opened';
       if (email.unread) {
         iconClass = 'closed';
-      };
+      }
 
       return `
         <div class="email">
@@ -25,7 +25,9 @@ const renderSection = (emails, element) => {
 
 fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=unread`)
   .then((response) => response.json())
-  .then((data) => renderSection(data.emails, document.getElementById('unread')));
+  .then((data) =>
+    renderSection(data.emails, document.getElementById('unread')),
+  );
 
 fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=read`)
   .then((response) => response.json())
