@@ -1,3 +1,4 @@
+import { Email } from './Email';
 const renderSection = (emails, element) => {
   element.innerHTML = emails
     .map((email) => {
