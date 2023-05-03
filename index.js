@@ -1,25 +1,20 @@
-import { Email } from './Email';
+import { Email } from './Email/index.js';
 const renderSection = (emails, element) => {
-  element.innerHTML = emails
+  emails
     .map((email) => {
-      let iconClass = 'opened';
       if (email.unread) {
-        iconClass = 'closed';
+        email.unread = 'closed';
+      } else {
+        email.unread = 'opened';
       }
-
-      return `
-        <div class="email">
-          <div class="email__head">
-            <button class="email__icon email__icon--${iconClass}"></button>
-            <div class="email__info">
-              <div class="email__sender">${email.sender.name}</div>
-              <div class="email__subject">${email.subject}</div>
-            </div>
-            <div class="email__time">${email.time}</div>
-          </div>
-          <div class="email__body"></div>
-        </div>
-      `;
+      return element.append(
+        Email({
+          senderName: email.sender.name,
+          subject: email.subject,
+          time: email.time,
+          unread: email.unread,
+        }),
+      );
     })
     .join('');
 };

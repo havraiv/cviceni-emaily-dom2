@@ -1,4 +1,3 @@
-import './style.css';
 export const Email = (props) => {
   const { senderName, subject, time, unread } = props;
   const element = document.createElement('div');
